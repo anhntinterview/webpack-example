@@ -24,6 +24,7 @@ const config = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'DEV',
+            favicon: `public/favicon.ico`,
             templateContent: ({ htmlWebpackPlugin }) =>
                 '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' +
                 htmlWebpackPlugin.options.title +
