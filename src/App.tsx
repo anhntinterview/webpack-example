@@ -7,9 +7,12 @@ import First from './pages/First';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 
-interface IAppProps {}
+interface IAppProps {
+    initialState: string;
+}
 
-const App: React.FunctionComponent<IAppProps> = () => {
+const App: React.FunctionComponent<IAppProps> = ({ initialState }) => {
+    console.log(initialState);
     return (
         <Routes>
             <Route path="/" element={<Layout />}>

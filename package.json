@@ -14,7 +14,7 @@
         "start": "webpack serve --open --env dev",
         "server": "node src/server.ts",
         "build-prod": "wp --env prod",
-        "dev": "wp && node ./build/server.js --env dev",
+        "dev": "wp --env dev && node ./dist/server.js",
         "stylelint-check": "stylelint-config-prettier-check",
         "prepare": "husky install",
         "pretty": "prettier --write .",

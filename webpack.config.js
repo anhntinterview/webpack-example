@@ -1,4 +1,5 @@
 const commonConfig = require('./build-utils/webpack.common');
+const serverConfig = require('./build-utils/webpack.server');
 const argv = require('webpack-nano/argv');
 
 const { merge } = require('webpack-merge');
@@ -25,5 +26,5 @@ module.exports = () => {
     const envConfig = require(`./build-utils/webpack.${env}.js`);
     const mergedConfig = merge(commonConfig, envConfig, ...addons(addonsArg));
 
-    return mergedConfig;
+    return [mergedConfig, serverConfig];
 };

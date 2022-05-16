@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const BundleAnalyzerPlugin =
     require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -28,13 +28,13 @@ const config = {
     devtool: 'inline-source-map',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'DEV',
-            favicon: `public/favicon.ico`,
-            templateContent: ({ htmlWebpackPlugin }) =>
-                templateContent(htmlWebpackPlugin),
-            filename: 'index.html',
-        }),
+        // new HtmlWebpackPlugin({
+        //     title: 'DEV',
+        //     favicon: `public/favicon.ico`,
+        //     templateContent: ({ htmlWebpackPlugin }) =>
+        //         templateContent(htmlWebpackPlugin),
+        //     filename: 'index.html',
+        // }),
         new LodashModuleReplacementPlugin(),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
         new BundleAnalyzerPlugin({
