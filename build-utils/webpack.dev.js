@@ -27,6 +27,7 @@ const config = {
     },
     devtool: 'inline-source-map',
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             title: 'DEV',
             favicon: `public/favicon.ico`,
