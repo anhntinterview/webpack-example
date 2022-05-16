@@ -9,6 +9,11 @@ const commonPaths = require('./common-paths');
 
 const port = process.env.PORT || 9000;
 
+const templateContent = (htmlWebpackPlugin) =>
+    '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' +
+    htmlWebpackPlugin.options.title +
+    '</title></head><body><div id="app"></div></body></html>';
+
 const config = {
     mode: 'development',
     entry: {
@@ -26,9 +31,7 @@ const config = {
             title: 'DEV',
             favicon: `public/favicon.ico`,
             templateContent: ({ htmlWebpackPlugin }) =>
-                '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' +
-                htmlWebpackPlugin.options.title +
-                '</title></head><body><div id="app"></div></body></html>',
+                templateContent(htmlWebpackPlugin),
             filename: 'index.html',
         }),
         new LodashModuleReplacementPlugin(),
