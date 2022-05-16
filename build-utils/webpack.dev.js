@@ -18,14 +18,14 @@ const config = {
     mode: 'development',
     entry: {
         app: [
-            `${commonPaths.appEntry}/index.ts`,
+            `${commonPaths.appEntry}/index.tsx`,
             'webpack-plugin-serve/client',
         ],
     },
     output: {
-        filename: 'sources/[name].[fullhash].js',
+        filename: 'sources/[name].js',
     },
-    devtool: false,
+    devtool: 'inline-source-map',
     plugins: [
         new HtmlWebpackPlugin({
             title: 'DEV',
@@ -36,11 +36,6 @@ const config = {
         }),
         new LodashModuleReplacementPlugin(),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
-        new webpack.SourceMapDevToolPlugin({
-            filename: 'sourcemaps/[name].js.map',
-            publicPath: '/',
-            fileContext: 'public',
-        }),
         new BundleAnalyzerPlugin({
             analyzerMode: 'static',
             openAnalyzer: false,

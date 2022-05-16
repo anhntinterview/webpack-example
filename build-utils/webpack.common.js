@@ -23,6 +23,9 @@ const config = {
             {
                 test: /\.ts(x)?$/,
                 loader: 'ts-loader',
+                options: {
+                    compilerOptions: { noEmit: false },
+                },
                 exclude: /node_modules/,
             },
             {
