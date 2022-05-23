@@ -6,7 +6,6 @@ const config = {
     },
     module: {
         rules: [
-            { test: /\.codegen$/i, loader: 'parcel-codegen-loader' },
             {
                 test: /\.css$/,
                 use: [

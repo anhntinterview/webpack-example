@@ -12,11 +12,11 @@
         "lib": ["dom", "es2018"],
         "moduleResolution": "node",
         "module": "esnext",
-        "jsx": "react",
+        "jsx": "react-jsx",
         "importHelpers": true,
         "baseUrl": "./src",
         "allowSyntheticDefaultImports": true
     },
-    "include": ["./src"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules"]
 }

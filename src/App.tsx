@@ -6,6 +6,7 @@ import About from './pages/About';
 import First from './pages/First';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import Register from './pages/user/Register';
 
 interface IAppProps {
     initialState: string;
@@ -17,6 +18,7 @@ const App: React.FunctionComponent<IAppProps> = ({ initialState }) => {
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
+                <Route path="register" element={<Register />} />
                 <Route path="about" element={<About />} />
                 <Route path="first" element={<First />} />
                 <Route path="second" element={<Second />} />
@@ -35,6 +37,12 @@ function Layout() {
                 <ul>
                     <li>
                         <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/register">Register</Link>
+                    </li>
+                    <li>
+                        <Link to="/login">Sign In</Link>
                     </li>
                     <li>
                         <Link to="/about">About</Link>
