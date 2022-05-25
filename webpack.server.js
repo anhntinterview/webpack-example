@@ -1,11 +1,18 @@
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+
 const scriptExtensions = /\.(tsx|ts|js|jsx|mjs)$/;
 const styleExtensions = /\.(css|less|styl|scss|sass|sss)$/;
 const imageExtensions = /\.(bmp|gif|jpg|jpeg|png)$/;
 const fontsExtension = /\.(eot|otf|ttf|woff|woff2)$/;
 
 module.exports = {
-    resolve: {
-        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    entry: './server/app.tsx',
+    target: 'node',
+    externals: [nodeExternals()],
+    output: {
+        path: path.resolve('dist'),
+        filename: '[name].js',
     },
     module: {
         rules: [
@@ -39,5 +46,8 @@ module.exports = {
                 type: 'asset/resource',
             },
         ],
+    },
+    resolve: {
+        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     },
 };

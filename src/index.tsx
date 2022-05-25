@@ -1,21 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import './style.css';
+import './index.css';
 import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-declare global {
-    interface Window {
-        APP_STATE: string;
-    }
-}
-
-// Lấy state từ một biến global được đưa vào HTML do server tạo
-const initialState = window.APP_STATE;
-const container = document.getElementById('app') as HTMLDivElement;
 ReactDOM.hydrateRoot(
-    container,
-    <BrowserRouter>
-        <App initialState={initialState} />
-    </BrowserRouter>
+    document.getElementById('root') as HTMLElement,
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
