@@ -12,10 +12,10 @@ import App from '../src/App';
 const PORT = process.env.PORT || 3006;
 const app = express();
 
-app.use('/static', express.static(path.resolve(__dirname, 'public')));
+app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
 app.get('*', (req, res) => {
-    const scripts = ['runtime.js', 'vendors.js', 'app.js'];
+    const scripts = ['bundle.js'];
     const initialState = 'Rendered on the server side!';
 
     const content = ReactDOMServer.renderToString(

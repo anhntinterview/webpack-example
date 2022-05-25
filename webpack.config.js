@@ -1,5 +1,6 @@
 const commonConfig = require('./build-utils/webpack.server.common');
 const argv = require('webpack-nano/argv');
+const { merge } = require('webpack-merge');
 
 const addons = (/* string | string[] */ addonsArg) => {
     let addons = Array.isArray(addonsArg)
