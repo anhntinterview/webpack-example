@@ -1,33 +1,36 @@
-import express from 'express';
-import fs from 'fs';
 import path from 'path';
+import fs from 'fs';
 
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom/server';
+import express from 'express';
 
+import Html from './Html';
 import App from '../src/App';
 
-const PORT = 8000;
-
+const PORT = process.env.PORT || 3006;
 const app = express();
 
-app.use('^/$', (req, res, next) => {
-    fs.readFile(path.resolve('./build/index.html'), 'utf-8', (err, data) => {
-        if (err) {
-            console.log(err);
-            return res.status(500).send('Some error happened');
-        }
-        return res.send(
-            data.replace(
-                '<div id="root"></div>',
-                `<div id="root">${ReactDOMServer.renderToString(<App />)}</div>`
-            )
-        );
-    });
+app.use('/static', express.static(path.resolve(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+    const scripts = ['runtime.js', 'vendors.js', 'app.js'];
+    const initialState = 'Rendered on the server side!';
+
+    const content = ReactDOMServer.renderToString(
+        <StaticRouter location={req.url}>
+            <App initialState={initialState} />
+        </StaticRouter>
+    );
+
+    const html = ReactDOMServer.renderToStaticMarkup(
+        <Html content={content} state={initialState} scripts={scripts} />
+    );
+
+    return res.send(`<!DOCTYPE html>${html}`);
 });
 
-app.use(express.static(path.resolve(__dirname, '..', 'build')));
-
 app.listen(PORT, () => {
-    console.log(`App launched on ${PORT}`);
+    console.log(`Server is listening on port ${PORT}`);
 });
