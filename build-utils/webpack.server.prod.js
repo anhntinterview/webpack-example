@@ -9,7 +9,6 @@ const config = {
         server: `${setup.appEntry}/server.tsx`,
     },
     output: {
-        // publicPath: '/',
         path: setup.outputPath,
         filename: '[name].js',
         libraryTarget: 'commonjs2',

@@ -13,6 +13,11 @@ const Html = ({ content, state, scripts }) => {
             </head>
             <body>
                 <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `window.APP_STATE=${JSON.stringify(state)}`,
+                    }}
+                />
                 {scripts.map((script, index) => (
                     <script key={index} src={`static/${script}`} />
                 ))}
