@@ -11,7 +11,7 @@
     "scripts": {
         "build:dev": "wp --env dev",
         "build:prod": "wp --env prod",
-        "start": "npm-run-all --parallel startWatch:*",
+        "start": "npm-run-all --parallel start:*",
         "start:server": "nodemon --watch dist --exec node ./dist/server.js",
         "start:build-server": "webpack --env dev --watch",
         "stylelint-check": "stylelint-config-prettier-check",
@@ -69,6 +69,7 @@
         "axios": "^0.27.2",
         "chalk": "^5.0.1",
         "express": "^4.18.1",
+        "isomorphic-fetch": "^3.0.0",
         "jquery": "^3.6.0",
         "nodemon": "^2.0.16",
         "popper.js": "^1.16.1",

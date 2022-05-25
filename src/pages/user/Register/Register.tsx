@@ -39,9 +39,12 @@ const Register: React.FunctionComponent<IRegisterProps> = (props) => {
         []
     );
 
-    function handleSubmit(e) {
-        e.preventDefault();
+    function handleSubmit() {
         console.log('xxx');
+        return (e) => {
+            e.preventDefault();
+            console.log('xxx');
+        };
     }
 
     // const handleSubmit = async (e) => {
@@ -72,8 +75,9 @@ const Register: React.FunctionComponent<IRegisterProps> = (props) => {
 
     return (
         <div>
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
+            <h1>Registerr</h1>
+            <button onClick={handleSubmit}>Hello</button>
+            {/* <form className='abc' onSubmit={handleSubmit}>
                 <fieldset>
                     <fieldset className="form-group">
                         <input
@@ -115,10 +119,12 @@ const Register: React.FunctionComponent<IRegisterProps> = (props) => {
                             placeholder="Img"
                         />
                     </fieldset>
-                    <button disabled={isLoading}>Sign up</button>
                 </fieldset>
+                <button 
+                        // disabled={isLoading}
+                    >Sign up</button>
             </form>
-            <ListErrors errors={errors} />
+            <ListErrors errors={errors} /> */}
         </div>
     );
 };
