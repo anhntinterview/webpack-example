@@ -1,19 +1,16 @@
-const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
-const commonPaths = require('./common-paths');
-const config = require('./webpack-server.common');
+const setup = require('./setup');
 
-const serverConfig = {
-    ...config,
+const config = {
     mode: 'production',
     target: 'node',
     name: 'server',
     entry: {
-        server: path.resolve(commonPaths.appEntry, 'server.tsx'),
+        server: `${setup.appEntry}/server.tsx`,
     },
     output: {
         // publicPath: '/',
-        path: commonPaths.outputPath,
+        path: setup.outputPath,
         filename: '[name].js',
         libraryTarget: 'commonjs2',
         chunkFilename: 'chunks/[name].js',
@@ -26,4 +23,4 @@ const serverConfig = {
     },
 };
 
-module.exports = serverConfig;
+module.exports = config;

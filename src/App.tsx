@@ -13,18 +13,26 @@ interface IAppProps {
 }
 
 const App: React.FunctionComponent<IAppProps> = ({ initialState }) => {
-    console.log(initialState);
     return (
-        <Routes>
-            <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="register" element={<Register />} />
-                <Route path="about" element={<About />} />
-                <Route path="first" element={<First />} />
-                <Route path="second" element={<Second />} />
-                <Route element={<NotFound />} />
-            </Route>
-        </Routes>
+        <>
+            <button
+                onClick={() => {
+                    console.log('xxx');
+                }}
+            >
+                {initialState}
+            </button>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="register" element={<Register />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="first" element={<First />} />
+                    <Route path="second" element={<Second />} />
+                    <Route element={<NotFound />} />
+                </Route>
+            </Routes>
+        </>
     );
 };
 

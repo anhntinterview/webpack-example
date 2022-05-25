@@ -12,9 +12,11 @@ import App from './App';
 const PORT = process.env.PORT || 3006;
 const app = express();
 
+app.use('/static', express.static(path.resolve(__dirname, 'public')));
+
 app.get('*', (req, res) => {
-    const scripts = ['runtime.js', 'vendor.js', 'app.js'];
-    const initialState = 'rendered on the server side!';
+    const scripts = ['runtime.js', 'vendors.js', 'app.js'];
+    const initialState = 'Rendered on the server side!';
 
     const content = ReactDOMServer.renderToString(
         <StaticRouter location={req.url}>
@@ -28,8 +30,6 @@ app.get('*', (req, res) => {
 
     return res.send(`<!DOCTYPE html>${html}`);
 });
-
-app.use(express.static('public'));
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);

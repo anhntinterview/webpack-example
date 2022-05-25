@@ -1,15 +1,26 @@
-const commonConfig = require('./build-utils/webpack-server.common');
+const clientCommonConfig = require('./build-utils/webpack.client.common');
+const serverCommonConfig = require('./build-utils/webpack.server.common');
 const argv = require('webpack-nano/argv');
 
 const { merge } = require('webpack-merge');
 
-const addons = (/* string | string[] */ addonsArg) => {
+const clientAddons = (/* string | string[] */ addonsArg) => {
     let addons = Array.isArray(addonsArg)
         ? addonsArg.filter((item) => item !== true)
         : [addonsArg].filter(Boolean);
 
     return addons.map((addonName) => {
-        require(`./build-utils/addons/webpack-server.${addonName}.js`);
+        require(`./build-utils/addons/webpack.client.${addonName}.js`);
+    });
+};
+
+const serverAddons = (/* string | string[] */ addonsArg) => {
+    let addons = Array.isArray(addonsArg)
+        ? addonsArg.filter((item) => item !== true)
+        : [addonsArg].filter(Boolean);
+
+    return addons.map((addonName) => {
+        require(`./build-utils/addons/webpack.server.${addonName}.js`);
     });
 };
 
@@ -22,8 +33,19 @@ module.exports = () => {
         );
     }
 
-    const envConfig = require(`./build-utils/webpack-server.${env}.js`);
-    const mergedConfig = merge(commonConfig, envConfig, ...addons(addonsArg));
+    const clientEnvConfig = require(`./build-utils/webpack.client.${env}.js`);
+    const clientMergedConfig = merge(
+        clientCommonConfig,
+        clientEnvConfig,
+        ...clientAddons(addonsArg)
+    );
 
-    return [mergedConfig];
+    const serverEnvConfig = require(`./build-utils/webpack.server.${env}.js`);
+    const serverMergedConfig = merge(
+        serverCommonConfig,
+        serverEnvConfig,
+        ...serverAddons(addonsArg)
+    );
+
+    return [clientMergedConfig, serverMergedConfig];
 };
