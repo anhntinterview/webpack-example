@@ -1,16 +1,20 @@
-import React from 'react';
+import * as React from 'react';
 import { Routes, Route, Outlet, Link } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
+import PostPage from './view/pages/post';
+
 interface IAppProps {
-    initialState: string;
+    initialState?: string;
+    preloadedState?: string;
 }
 
 const App: React.FunctionComponent<IAppProps> = ({ initialState }) => {
     React.useEffect(() => {
         console.log('yyy');
     }, []);
+
     return (
         <div className="App">
             <header className="App-header">
@@ -26,6 +30,11 @@ const App: React.FunctionComponent<IAppProps> = ({ initialState }) => {
                         <Route index element={<Home />} />
                         <Route element={<NotFound />} />
                     </Route>
+                    <Route
+                        caseSensitive={true}
+                        path="/post"
+                        element={<PostPage />}
+                    />
                 </Routes>
             </header>
         </div>
@@ -52,7 +61,7 @@ function Layout() {
                         <Link to="/about">About</Link>
                     </li>
                     <li>
-                        <Link to="/first">First</Link>
+                        <Link to="/post">Post</Link>
                     </li>
                     <li>
                         <Link to="/second">Second</Link>

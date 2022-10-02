@@ -1,10 +1,28 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const setup = require('./setup');
 
+// const createEnvironmentHash = require('./config/createEnvironmentHash');
+// const getClientEnvironment = require('./config/env');
+
+// const env = getClientEnvironment(setup.publicUrlOrPath.slice(0, -1));
+
 module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     },
+    // cache: {
+    //     type: 'filesystem',
+    //     version: createEnvironmentHash(env.raw),
+    //     cacheDirectory: setup.appWebpackCache,
+    //     store: 'pack',
+    //     buildDependencies: {
+    //         defaultWebpack: ['webpack/lib/'],
+    //         config: [__filename],
+    //         tsconfig: [setup.appTsConfig, setup.appJsConfig].filter((f) =>
+    //             fs.existsSync(f)
+    //         ),
+    //     },
+    // },
     module: {
         rules: [
             {

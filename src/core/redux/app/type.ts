@@ -1,15 +1,4 @@
-import { Action, ThunkAction } from '@reduxjs/toolkit';
-import { store } from 'core/redux/app/store';
-import { STATUS } from 'core/redux/app/constant';
-
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-    ReturnType,
-    RootState,
-    unknown,
-    Action<string>
->;
+import { STATUS } from '../../../core/redux/app/constant';
 
 export class RTKQStateItemDTO<T> {
     readonly [name: string]: T;

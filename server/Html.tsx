@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Html = ({ content, state, scripts }) => {
+const Html = ({ content, state, scripts, preloadedState }) => {
     return (
         <html lang="en">
             <head>
@@ -31,6 +31,13 @@ const Html = ({ content, state, scripts }) => {
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `window.APP_STATE=${JSON.stringify(state)}`,
+                    }}
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `window.__PRELOADED_STATE__=${JSON.stringify(
+                            preloadedState
+                        ).replace(/</g, '\\u003c')}`,
                     }}
                 />
             </body>
